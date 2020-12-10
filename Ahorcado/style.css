@@ -1,3 +1,8 @@
-section {
-  background-color: cadetblue;
+body {
+  background-color: rgb(252, 196, 127);
+}
+
+#boton {
+  font-size: 1.5rem;
+  padding: 10px 20px;
 }
