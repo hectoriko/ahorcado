@@ -8,11 +8,25 @@
     
   </head>
   <body>
-    <h1>Ahorcado</h1>
-    <input type="text" id="letra" placeholder="Introduce una letra">
-    <button id="boton">Jugar</button>
 
-    <div id="dibujo"></div>
+
+    <div id="mainContainer">
+      <h1>Ahorcado</h1>
+      <div id="areaDibujo">
+        <img src="img/ahorcado0.png">
+      </div>
+  
+      <div>
+        <p>Adivina la palabra oculta:</p>
+        <div id="areaHuecos"></div>
+        <div id="areaMensaje"></div>
+        <div id="areaFallosRestantes">Te quedan 5 fallos.</div>
+      </div>
+  
+      <input type="text" id="letra" placeholder="Introduce una letra">
+  
+      <button id="boton">Comprobar</button>
+    </div>
 
     <!-- <img src="img/ahorcado4.jpg"> -->
 

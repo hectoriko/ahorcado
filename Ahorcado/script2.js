@@ -9,42 +9,47 @@ function jugar() {
   let i = 0;
   
   // Palabra pre-definida
-  /* var palabra = 'c o c h e';
-  var huecos = '_ _ _ _ _'; */
+  var palabra = 'c o c h e';
+  var huecos = '_ _ _ _ _';
 
   // Palabra aleatoria
-  var arrayPalabras = ['abrelatas','disposicion','altavoz','aire','mesa','libros','escuela','pelusa','esfera','periferico','animal','esquina','perro', 'casco','piscina','pasto','cuaderno','planta','atomo','francia','posavasos','galleta','programa','puerta'];
-
+  /* var arrayPalabras = ['abrelatas','disposicion','altavoz','aire','mesa','libros','escuela','pelusa','esfera','periferico','animal','esquina','perro', 'casco','piscina','pasto','cuaderno','planta','atomo','francia','posavasos','galleta','programa','puerta'];
   var palabra = arrayPalabras[Math.floor(Math.random()* arrayPalabras.length)];
-
   var huecos = '';
   for (let i = 0; i < palabra.length; i++) {
     huecos += '_'
-  };
+  }; */
 
-  var fallos = 0;
+  var dibujo = document.getElementById('dibujo');
+  var fallos = 5;
 
+  
   do {
-    var intentos = Math.round(palabra.length) + 4;
-    var intentosRestantes = intentos - i;
-    var letra = prompt(`Adivina la palabra: \n ${huecos} \n (Te quedan ${intentosRestantes} intentos)`);
+    var letra = prompt(`Adivina la palabra: \n ${huecos} \n (Te quedan ${fallos} fallos)`);
     console.log(`La letra introducida es: ${letra} `);
-    
+
     for (var j = 0; j <= palabra.length; j++) {
-      if (letra == palabra.charAt(j)) {
-        console.log(`La letra ${palabra.charAt(j)}, está en la posición ${palabra.indexOf(letra)}`,);
-        // console.log(huecos, j, palabra.charAt(j), huecos.charAt(j));
-        huecos = huecos.replaceAt(j, palabra.charAt(j));
-        if (palabra == huecos) {
-          return alert('Has ganado!, la palabra oculta era: '+ palabra);
+      if (palabra.includes(letra)) {
+        if (palabra.charAt(j) == letra) {
+          console.log(`La letra ${palabra.charAt(j)}, está en la posición ${palabra.indexOf(letra)}`);
+          huecos = huecos.replaceAt(j, palabra.charAt(j));
+          if (palabra == huecos) {
+            return alert(`Has ganado!, la palabra oculta era: ${palabra}`);
+          }
+          /* break; */
         }
       } else {
-        alert('No esta esa letra');
+        alert('Esa letra no aparece en la palabra. Prueba de nuevo.');
+        console.log('fallo');
+        fallos--;
+        break;
       }
     }
-    i++;
-  } while (i < intentos);
+
+  } while (fallos > 0);
 };
 
 let boton = document.getElementById('boton');
 boton.addEventListener('click', jugar);
+
+

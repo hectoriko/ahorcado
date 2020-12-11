@@ -9,17 +9,17 @@ function jugar() {
   let i = 0;
   
   // Palabra pre-definida
-  /* var palabra = 'c o c h e';
-  var huecos = '_ _ _ _ _'; */
+  var palabra = 'c o c h e';
+  var huecos = '_ _ _ _ _';
 
   // Palabra aleatoria
-  var arrayPalabras = ['abrelatas','disposicion','altavoz','aire','mesa','libros','escuela','pelusa','esfera','periferico','animal','esquina','perro', 'casco','piscina','pasto','cuaderno','planta','atomo','francia','posavasos','galleta','programa','puerta'];
+  /* var arrayPalabras = ['abrelatas','disposicion','altavoz','aire','mesa','libros','escuela','pelusa','esfera','periferico','animal','esquina','perro', 'casco','piscina','pasto','cuaderno','planta','atomo','francia','posavasos','galleta','programa','puerta'];
   var palabra = arrayPalabras[Math.floor(Math.random()* arrayPalabras.length)];
 
   var huecos = '';
   for (let i = 0; i < palabra.length; i++) {
     huecos += '_'
-  };
+  }; */
 
   do {
     var intentos = Math.round(palabra.length) + 4;
