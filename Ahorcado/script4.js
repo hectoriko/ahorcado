@@ -12,10 +12,9 @@ var areaMensaje = document.getElementById('areaMensaje');
 var areaHuecos = document.getElementById('areaHuecos');
 var areaFallosRestantes = document.getElementById('areaFallosRestantes');
 
-
 // Palabra pre-definida
-var palabra = 'c o c h e';
-var huecos = '_ _ _ _ _'; 
+var palabra = 'c a r';
+var huecos = '_ _ _'; 
 
 // Definimos valores iniciales
 var fallosRestantes = 5;
@@ -27,24 +26,21 @@ areaDibujo.innerHTML = '<img src="img/ahorcado0.png"></img>';
 areaFallosRestantes.innerHTML = `Te quedan 5 fallos.`
 
 
-function jugar() {
-  
+function jugar(tecla) {
   while (fallosRestantes >= 0) {
-    var letra = document.getElementById('letra').value;
-    console.log(`La letra introducida es: ${letra} `);
-   
+    var letra = tecla;
+    console.log(letra);
+    console.log(`La letra introducida es: ${letra.key}`);
     for (var j = 0; j <= palabra.length; j++) {
-      if (palabra.includes(letra)) {
-      
-        
-        if (palabra.charAt(j) == letra) {
+      if (palabra.includes(letra.key)) {
+        if (palabra.charAt(j) == letra.key) {
           huecos = huecos.replaceAt(j, palabra.charAt(j));
           areaHuecos.innerHTML = huecos;
           if (palabra == huecos) {
              mainContainer.innerHTML = `<h2>FELICIDADES <br> 
                                       Has ganado! <br> 
                                       La palabra era: <span>${palabra}</span></h2>
-                                      <button><a href="index3.html">Volver a jugar<a></button>`;
+                                      <button><a href="index4.html">Volver a jugar<a></button>`;
           }
           return fallosRestantes += 0;
         }
@@ -52,30 +48,25 @@ function jugar() {
         /* console.log('fallo', fallosRestantes, 'contador: ' + contador); */
         fallosRestantes--;
         contador++;
-  
         areaDibujo.innerHTML = `<img src="img/ahorcado${contador}.png">`;
         /* areaMensaje.innerHTML = `<p>Esa letra no aparece en la palabra. Prueba de nuevo.</p>`; */
         areaFallosRestantes.innerHTML =`<p>Te quedan ${fallosRestantes} fallos.</p>`;
-        
         if (fallosRestantes == 0) {
           mainContainer.innerHTML = `<img src="img/ahorcado${contador}.png">
                                       <h3>Has perdido! <br> 
                                       La palabra era: <span>${palabra}</span></h3>
-                                     <button><a href="index3.html">Volver a jugar<a></button>`;
+                                     <button><a href="index4.html">Volver a jugar<a></button>`;
         }
-  
         return fallosRestantes; 
       }
-
-     
-
     }  
   } ;
 };
 
-let boton = document.getElementById('boton');
-boton.addEventListener('click', jugar);
-
+window.addEventListener('keyup', (tecla) => {
+  console.log(tecla.key);
+  jugar(tecla)
+});
 
 
 // Palabra aleatoria

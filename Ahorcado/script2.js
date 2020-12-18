@@ -12,13 +12,7 @@ function jugar() {
   var palabra = 'c o c h e';
   var huecos = '_ _ _ _ _';
 
-  // Palabra aleatoria
-  /* var arrayPalabras = ['abrelatas','disposicion','altavoz','aire','mesa','libros','escuela','pelusa','esfera','periferico','animal','esquina','perro', 'casco','piscina','pasto','cuaderno','planta','atomo','francia','posavasos','galleta','programa','puerta'];
-  var palabra = arrayPalabras[Math.floor(Math.random()* arrayPalabras.length)];
-  var huecos = '';
-  for (let i = 0; i < palabra.length; i++) {
-    huecos += '_'
-  }; */
+  
 
   var dibujo = document.getElementById('dibujo');
   var fallos = 5;
@@ -53,3 +47,14 @@ let boton = document.getElementById('boton');
 boton.addEventListener('click', jugar);
 
 
+
+
+
+
+// Palabra aleatoria
+  /* var arrayPalabras = ['abrelatas','disposicion','altavoz','aire','mesa','libros','escuela','pelusa','esfera','periferico','animal','esquina','perro', 'casco','piscina','pasto','cuaderno','planta','atomo','francia','posavasos','galleta','programa','puerta'];
+  var palabra = arrayPalabras[Math.floor(Math.random()* arrayPalabras.length)];
+  var huecos = '';
+  for (let i = 0; i < palabra.length; i++) {
+    huecos += '_'
+  }; */
