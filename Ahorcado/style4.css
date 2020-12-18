@@ -106,3 +106,20 @@ img {
   border-radius: 10px ;
   padding: 10px 0;
 }
+
+#areaIntroducidas {
+  display: flex;
+  justify-content: center;
+}
+
+#areaIntroducidas p {
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  border-radius: 5px;
+  margin: 10px;
+  color: black;
+  background-color: rgb(235, 226, 190);
+  box-shadow: 2px 2px 5px black;
+}
