@@ -3,18 +3,33 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Ejercicio AHORCADO 2</title>
-    <link rel="stylesheet" href="style2.css">
+    <title>AHORCADO 3</title>
+    <link rel="stylesheet" href="style3.css">
     
   </head>
   <body>
-    <h1>Ahorcado</h1>
-    <h2>Si se repite las misma letra varias veces en la palbra da problemas</h2>
-    <button id="boton">Jugar</button>
 
-    <div id="dibujo"></div>
 
-    <script src="script2.js"></script>
+    <div id="mainContainer">
+      <h1>Ahorcado</h1>
+
+      <div id="areaDibujo"></div>
+  
+      <div>
+        <p>Adivina la palabra oculta:</p>
+        <div id="areaHuecos"></div>
+        <div id="areaMensaje"></div>
+        <div id="areaFallosRestantes"></div>
+      </div>
+  
+      <input type="text" id="letra" placeholder="Introduce una letra">
+      <button id="boton">Comprobar</button>
+
+    </div>
+
+    <!-- <img src="img/ahorcado4.jpg"> -->
+
+    <script src="script3.js"></script>
   </body>
 </html>
 

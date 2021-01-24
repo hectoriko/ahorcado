@@ -5,42 +5,72 @@ String.prototype.replaceAt = function(index, replacement) {
   return this.substring(0, index) + replacement + this.substring(index + 1);
 }
 
+// Definir zonas a usar en el HTML
+var mainContainer = document.getElementById('mainContainer');
+var areaDibujo = document.getElementById('areaDibujo');
+var areaMensaje = document.getElementById('areaMensaje');
+var areaHuecos = document.getElementById('areaHuecos');
+var areaFallosRestantes = document.getElementById('areaFallosRestantes');
+
+
+// Palabra pre-definida
+var palabra = 'c o c h e';
+var huecos = '_ _ _ _ _'; 
+
+// Definimos valores iniciales
+var fallosRestantes = 5;
+var contador = 0;
+
+// Dibujamos elementos inciales
+areaHuecos.innerHTML = huecos;
+areaDibujo.innerHTML = '<img src="img/ahorcado0.png"></img>';
+areaFallosRestantes.innerHTML = `Te quedan 5 fallos.`
+
+
 function jugar() {
-  let i = 0;
   
-  // Palabra pre-definida
-  var palabra = 'c o c h e';
-  var huecos = '_ _ _ _ _';
-
-  
-
-  var dibujo = document.getElementById('dibujo');
-  var fallos = 5;
-
-  
-  do {
-    var letra = prompt(`Adivina la palabra: \n ${huecos} \n (Te quedan ${fallos} fallos)`);
+  while (fallosRestantes >= 0) {
+    var letra = document.getElementById('letra').value;
     console.log(`La letra introducida es: ${letra} `);
-
+   
     for (var j = 0; j <= palabra.length; j++) {
       if (palabra.includes(letra)) {
+      
+        
         if (palabra.charAt(j) == letra) {
-          console.log(`La letra ${palabra.charAt(j)}, está en la posición ${palabra.indexOf(letra)}`);
           huecos = huecos.replaceAt(j, palabra.charAt(j));
+          areaHuecos.innerHTML = huecos;
           if (palabra == huecos) {
-            return alert(`Has ganado!, la palabra oculta era: ${palabra}`);
+             mainContainer.innerHTML = `<h2>FELICIDADES <br> 
+                                      Has ganado! <br> 
+                                      La palabra era: <span>${palabra}</span></h2>
+                                      <button><a href="index3.html">Volver a jugar<a></button>`;
           }
-          /* break; */
+          return fallosRestantes += 0;
         }
-      } else {
-        alert('Esa letra no aparece en la palabra. Prueba de nuevo.');
-        console.log('fallo');
-        fallos--;
-        break;
+      }  else {
+        /* console.log('fallo', fallosRestantes, 'contador: ' + contador); */
+        fallosRestantes--;
+        contador++;
+  
+        areaDibujo.innerHTML = `<img src="img/ahorcado${contador}.png">`;
+        /* areaMensaje.innerHTML = `<p>Esa letra no aparece en la palabra. Prueba de nuevo.</p>`; */
+        areaFallosRestantes.innerHTML =`<p>Te quedan ${fallosRestantes} fallos.</p>`;
+        
+        if (fallosRestantes == 0) {
+          mainContainer.innerHTML = `<img src="img/ahorcado${contador}.png">
+                                      <h3>Has perdido! <br> 
+                                      La palabra era: <span>${palabra}</span></h3>
+                                     <button><a href="index3.html">Volver a jugar<a></button>`;
+        }
+  
+        return fallosRestantes; 
       }
-    }
 
-  } while (fallos > 0);
+     
+
+    }  
+  } ;
 };
 
 let boton = document.getElementById('boton');
@@ -48,13 +78,11 @@ boton.addEventListener('click', jugar);
 
 
 
-
-
-
 // Palabra aleatoria
-  /* var arrayPalabras = ['abrelatas','disposicion','altavoz','aire','mesa','libros','escuela','pelusa','esfera','periferico','animal','esquina','perro', 'casco','piscina','pasto','cuaderno','planta','atomo','francia','posavasos','galleta','programa','puerta'];
-  var palabra = arrayPalabras[Math.floor(Math.random()* arrayPalabras.length)];
-  var huecos = '';
-  for (let i = 0; i < palabra.length; i++) {
-    huecos += '_'
-  }; */
+/* var arrayPalabras = ['abrelatas','disposicion','altavoz','aire','mesa','libros','escuela','pelusa','esfera','periferico','animal','esquina','perro', 'casco','piscina','pasto','cuaderno','planta','atomo','francia','posavasos','galleta','programa','puerta'];
+var palabra = arrayPalabras[Math.floor(Math.random()* arrayPalabras.length)];
+
+var huecos = '';
+for (let i = 0; i < palabra.length; i++) {
+  huecos += '_';
+}; */
