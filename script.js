@@ -11,15 +11,16 @@ var areaDibujo = document.getElementById('areaDibujo');
 var areaMensaje = document.getElementById('areaMensaje');
 var areaHuecos = document.getElementById('areaHuecos');
 var areaFallosRestantes = document.getElementById('areaFallosRestantes');
-
+var areaintroducidas = document.getElementById('areaIntroducidas');
 
 // Palabra pre-definida
-var palabra = 'c o c h e';
-var huecos = '_ _ _ _ _'; 
+var palabra = 'c a r';
+var huecos = '_ _ _'; 
 
 // Definimos valores iniciales
-var fallosRestantes = 5;
-var contador = 0;
+let fallosRestantes = 5;
+let contador = 0;
+let letrasIntroducidas = [];
 
 // Dibujamos elementos inciales
 areaHuecos.innerHTML = huecos;
@@ -27,54 +28,64 @@ areaDibujo.innerHTML = '<img src="img/ahorcado0.png"></img>';
 areaFallosRestantes.innerHTML = `Te quedan 5 fallos.`
 
 
-function jugar() {
-  
+function jugar(tecla) {
   while (fallosRestantes >= 0) {
-    var letra = document.getElementById('letra').value;
-    console.log(`La letra introducida es: ${letra} `);
-   
-    for (var j = 0; j <= palabra.length; j++) {
+    let letra = tecla.key;
+    
+    for (let j = 0; j <= palabra.length; j++) {
       if (palabra.includes(letra)) {
-      
-        
         if (palabra.charAt(j) == letra) {
           huecos = huecos.replaceAt(j, palabra.charAt(j));
           areaHuecos.innerHTML = huecos;
-          if (palabra == huecos) {
-             mainContainer.innerHTML = `<h2>FELICIDADES <br> 
-                                      Has ganado! <br> 
-                                      La palabra era: <span>${palabra}</span></h2>
-                                      <button><a href="index3.html">Volver a jugar<a></button>`;
-          }
+          heGanadoYa(); // Comprueba si ha ganado
           return fallosRestantes += 0;
         }
       }  else {
-        /* console.log('fallo', fallosRestantes, 'contador: ' + contador); */
+        letrasIntroducidas.push(letra);
+        // console.log(letrasIntroducidas);
         fallosRestantes--;
         contador++;
-  
+        dibujarLetraFallada(letra);
         areaDibujo.innerHTML = `<img src="img/ahorcado${contador}.png">`;
         /* areaMensaje.innerHTML = `<p>Esa letra no aparece en la palabra. Prueba de nuevo.</p>`; */
         areaFallosRestantes.innerHTML =`<p>Te quedan ${fallosRestantes} fallos.</p>`;
-        
-        if (fallosRestantes == 0) {
-          mainContainer.innerHTML = `<img src="img/ahorcado${contador}.png">
-                                      <h3>Has perdido! <br> 
-                                      La palabra era: <span>${palabra}</span></h3>
-                                     <button><a href="index3.html">Volver a jugar<a></button>`;
-        }
-  
+        hePerdidoYa(); // Comprueba si ha fallado
         return fallosRestantes; 
       }
-
-     
-
     }  
   } ;
 };
 
-let boton = document.getElementById('boton');
-boton.addEventListener('click', jugar);
+function dibujarLetraFallada(letra) {
+  // Añade la letra introducida para que la recuerdes
+  var p = document.createElement('p');
+  var contenido = document.createTextNode(letra);
+  p.appendChild(contenido);
+  var child = document.getElementById("p1");//search the first p element
+  areaintroducidas.insertBefore(p, child); 
+};
+
+function heGanadoYa() {
+  if (palabra == huecos) {
+    mainContainer.innerHTML = `<h2>FELICIDADES <br> 
+                               Has ganado! <br> 
+                               La palabra era: <span>${palabra}</span></h2>
+                               <button><a href="index4.html">Volver a jugar<a></button>`;
+  }
+};
+
+function hePerdidoYa() {
+  if (fallosRestantes == 0) {
+    mainContainer.innerHTML = `<img src="img/ahorcado${contador}.png">
+                                <h3>Has perdido! <br> 
+                                La palabra era: <span>${palabra}</span></h3>
+                               <button><a href="index4.html">Volver a jugar<a></button>`;
+  }
+};
+
+window.addEventListener('keyup', (tecla) => jugar(tecla) );
+
+
 
 
 
